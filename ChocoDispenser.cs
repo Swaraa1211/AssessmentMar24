@@ -201,6 +201,7 @@ namespace AssessmentMar24
             int[] vibgyor = new int[] {};
             for(int i=0; i < choco.Length;i++)
             {
+                vibgyor = vibgyor.Append(choco[i]).ToArray();
                 if (choco[i] == 1)
                 {
                     //vibgyor = vibgyor.Append(choco[i]).ToArray();
@@ -242,10 +243,10 @@ namespace AssessmentMar24
                         vibgyor = vibgyor.Append(8).ToArray();
                     }
                 }
-                else
-                {
-                    vibgyor = vibgyor.Append(choco[i]).ToArray();
-                }
+                //else
+                //{
+                
+                //}
             }
             foreach(var i in vibgyor)
             {
