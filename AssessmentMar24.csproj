@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>AssessmentMar24.PersonalityTraitApp</StartupObject>
+    <StartupObject>AssessmentMar24.ChocoDispenser</StartupObject>
   </PropertyGroup>
 
 </Project>

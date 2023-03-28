@@ -3,26 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//1 - Green
+//2 - Red
+//3 - Blue
+//4 - Orange
+//5 - Yellow
+//6 - Violet
+//7 - Pink
+//8 - VIBGYOR
 namespace AssessmentMar24
 {
     internal class ChocoDispenser
     {
-        int[] choco = { 1, 1, 1, 2, 3, 2, 4, 5, 1, 6, 3, 6, 7 };
+        int[] choco = new int[] { 1, 1, 1, 2, 3, 2, 4, 5, 1, 6, 3, 6, 7 };
+        string[] chocoColor = { "green", "red", "blue", "orange", "yellow", "violet", "pink", "VIBGYOR" };
         public void addChocolates()
         {
             Console.WriteLine("The color you want");
             int c = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("How many");
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
+            if (c > choco.Length)
             {
-                choco.Append(c);
+                Console.WriteLine("Wrong Input");
             }
-            foreach (int i in choco)
+            else
             {
-                Console.WriteLine(i);
+                Console.WriteLine("How many");
+                int n = Convert.ToInt32(Console.ReadLine());
+
+                for (int i = 0; i < n; i++)
+                {
+                    choco = choco.Append(c).ToArray();
+                }
+                foreach (var i in choco)
+                {
+                    Console.WriteLine(chocoColor[i - 1]);
+                }
             }
 
         }
@@ -32,54 +47,217 @@ namespace AssessmentMar24
             Console.WriteLine("Count");
 
             int count = Convert.ToInt32(Console.ReadLine());
-            for (int i = choco[count]; i < choco.Length; i++)
+            if (count > choco.Length)
             {
-                choco[i] = '\0';
+                Console.WriteLine("Wrong Input");
+
             }
-            Console.WriteLine("Present content");
-            foreach (int i in choco)
+            else
             {
-                Console.WriteLine(i + " ");
+                choco = choco.SkipLast(count).ToArray();
+                /*for (int i = choco[choco.Length - count]; i < choco.Length; i++)
+                {
+                    choco = choco.SkipLast(i).ToArray();
+                    //choco[i] = '\0';
+                }*/
+                Console.WriteLine("Present Choco: ");
+                foreach (var i in choco)
+                {
+                    Console.Write(chocoColor[i - 1] + " ");
+                }
             }
         }
         public void dispenseChocolates()
         {
+            Console.WriteLine("Number of Choco to remove from bottom");
+            int count = Convert.ToInt32(Console.ReadLine());
 
+            Console.Write("Removed Elements: ");
+            for(int i=0; i<count; i++)
+            {
+                Console.Write(choco[i] + " ");
+                choco = choco.Skip(i).ToArray();
+            }
+
+            //for(int i=0; i<count)
+            foreach (int i in choco)
+            {
+                Console.WriteLine(chocoColor[i] + " ");
+            }
 
         }
         public void dispenseChocolatesOfColor()
         {
+            Console.Write("Fav Color: ");
+            int fav = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.Write("Count: ");
+            int count = Convert.ToInt32(Console.ReadLine());
+
+            for(int i=0; i<count; i++)
+            {
+                if (choco[i] == fav)
+                {
+                    Console.WriteLine(choco[i]);
+                }
+            }
 
         }
         public void noOfChocolates()
         {
-
+            int c = 1;
+            int count = 7;
+            Console.Write("[ ");
+            for(int i = 0; i < count ; i++)
+            {
+                
+                int num = 1;
+                for (int j=0; j < choco.Length ; j++)
+                {
+                    if (choco[j] == c)
+                    {
+                        num++;
+                    }
+                }
+                c++;
+                Console.Write(+(num-1) + " " + chocoColor[i]);
+                
+            }
+            Console.WriteLine(" ]");
+            
         }
         public void sortChocolateBasedOnCount()
         {
+            Array.Sort(choco);
+            Array.Reverse(choco);
+            foreach (int i in choco)
+            {
+                //Console.Write(i + " ");
+                Console.Write(chocoColor[i-1] + " ");
+            }
 
         }
         public void changeChocolateColor()
         {
+            Console.Write("Color you want to change: ");
+            int change = Convert.ToInt32(Console.ReadLine());
 
+            Console.Write("Change to: ");
+            int changeTo = Convert.ToInt32(Console.ReadLine());
+
+            for(int i = 0; i < choco.Length ; i++)
+            {
+                if (change == choco[i])
+                {
+                    choco[i] = changeTo;
+                }
+            }
+            foreach (int i in choco)
+            {
+                Console.Write(chocoColor[i - 1] + " ");
+            }
         }
         public void changeChocolateAllOfxCount()
         {
+            Console.Write("Color you want to change: ");
+            int change = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Change to: ");
+            int changeTo = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Count: ");
+            int count = Convert.ToInt32(Console.ReadLine());
+
+            for(int i=0; i < count ;i++)
+            {
+                if (choco[i] == change)
+                {
+                    choco[i] = changeTo;
+                }
+            }
+            for(int i = 0; i < count; i++)
+            {
+                Console.Write(chocoColor[i] + " ");
+            }
+
 
         }
         public void removeChocolateOfColor()
         {
+            Console.Write("Enter the color to remove: ");
+            int rem = Convert.ToInt32(Console.ReadLine());
 
+            choco = choco.Where(r => r != rem).ToArray();
+            
+            foreach (int i in choco)
+            {
+                Console.Write(chocoColor[i - 1] + " ");
+            }
         }
         public void dispenseRainbowChocolates()
         {
+            //List<int> chocoList = choco.ToList();
+            int g = 0, r = 0, b = 0, o = 0, y = 0;
+            int[] vibgyor = new int[] {};
+            for(int i=0; i < choco.Length;i++)
+            {
+                if (choco[i] == 1)
+                {
+                    //vibgyor = vibgyor.Append(choco[i]).ToArray();
+                    g++;
+                    if (g == 3) 
+                    {
+                        vibgyor = vibgyor.Append(8).ToArray();
+                    }
+                }
+                else if (choco[i] == 2)
+                {
+                    r++;
+                    if (r == 3)
+                    {
+                        vibgyor = vibgyor.Append(8).ToArray();
+                    }
+                }
+                else if (choco[i] == 3)
+                {
+                    b++;
+                    if (b == 3)
+                    {
+                        vibgyor = vibgyor.Append(8).ToArray();
+                    }
+                }
+                else if (choco[i] == 4)
+                {
+                    o++;
+                    if (o == 3)
+                    {
+                        vibgyor = vibgyor.Append(8).ToArray();
+                    }
+                }
+                else if (choco[i] == 5)
+                {
+                    y++;
+                    if (y == 3)
+                    {
+                        vibgyor = vibgyor.Append(8).ToArray();
+                    }
+                }
+                else
+                {
+                    vibgyor = vibgyor.Append(choco[i]).ToArray();
+                }
+            }
+            foreach(var i in vibgyor)
+            {
+                Console.Write(chocoColor[i - 1] + " ");
+            }
 
         }
         static void Main(string[] arg)
         {
             var obj = new ChocoDispenser();
             Console.WriteLine("Hello !\n The Chocolate Colors are: ");
-            Console.WriteLine("1 - Green\n2 - Red\n3 - Blue\n4 - Orange\n5 - Yellow\n6 - Violet\n7 - Pink");
+            Console.WriteLine("1 - Green\n2 - Red\n3 - Blue\n4 - Orange\n5 - Yellow\n6 - Violet\n7 - Pink\n8 - VIGBYOR");
             //int[] choco = {1, 1, 1, 2, 3, 2, 4, 5, 1, 6, 3, 6, 7};
 
             Console.WriteLine("1. Add Choclate");
@@ -147,10 +325,23 @@ namespace AssessmentMar24
     }
 }
 
-//1 - Green
-//2 - Red
-//3 - Blue
-//4 - Orange
-//5 - Yellow
-//6 - Violet
-//7 - Pink
+/*
+             * for(int j = 1; j <= chocoColor.Length ; j++)
+                {
+                    if (choco[j].Equals(i+1))
+                    {
+                        c++;
+                    }
+                }
+                Console.WriteLine(c + " " + chocoColor[i]);
+             * */
+
+/*
+            for (int i = 0; i < choco.Length; i++)
+            {
+                //Console.Write(choco[i] + " ");
+                if (choco[i] == rem)
+                {
+                    choco = choco.Skip(i).ToArray();
+                }
+            }*/
