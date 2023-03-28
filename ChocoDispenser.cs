@@ -324,24 +324,3 @@ namespace AssessmentMar24
         }
     }
 }
-
-/*
-             * for(int j = 1; j <= chocoColor.Length ; j++)
-                {
-                    if (choco[j].Equals(i+1))
-                    {
-                        c++;
-                    }
-                }
-                Console.WriteLine(c + " " + chocoColor[i]);
-             * */
-
-/*
-            for (int i = 0; i < choco.Length; i++)
-            {
-                //Console.Write(choco[i] + " ");
-                if (choco[i] == rem)
-                {
-                    choco = choco.Skip(i).ToArray();
-                }
-            }*/
