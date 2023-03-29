@@ -94,33 +94,63 @@
         public void CalendarMan()
         {
             Console.WriteLine("Calender Man !");
-            Console.WriteLine("Year of Birth");
+            Console.Write("Year of Birth: ");
             int y = Convert.ToInt32(Console.ReadLine());
             int age, pyear = 2023, pmonth = 3;
             age = pyear - y;
             Console.WriteLine("Your Age: " + age);
-            Console.WriteLine("Birth Month ");
+            Console.Write("Birth Month: ");
             int m = Convert.ToInt32(Console.ReadLine());
             if (m > pmonth)
             {
-                Console.WriteLine("Your Birthday is " + (m - pmonth) + "Months Away");
+                Console.WriteLine("Your Birthday is " + (m - pmonth) + " Months Away");
             }
             else
             {
-                Console.WriteLine("Your Birthday is " + (pmonth - m) + "Months Away");
+                Console.WriteLine("Your Birthday is " + (pmonth - m) + " Months Away");
             }
             Console.WriteLine("Your CALENDAR MAN Session Got Over");
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Welcome!\n Name");
+            Console.WriteLine("Hello, Welcome!");
+            Console.Write("Name: ");
 
             string name = Console.ReadLine();
             Console.WriteLine("Welcome " + name);
             PersonalityTraitApp app = new PersonalityTraitApp();
-            app.BeAMentalist();
-            app.MimicPtolemy();
-            app.CalendarMan();
+            string willing = "";
+            do
+            {
+                Console.WriteLine("Choose anyone that you wanna play: \n1. BE A MENTALIST\n2.MIMIC PTOLEMY\n3.CALENDAR MAN");
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("BE A MENTALIST");
+                        app.BeAMentalist();
+                        break;
+                    case 2:
+                        Console.WriteLine("MIMIC PTOLEMY");
+                        app.MimicPtolemy();
+                        break;
+                    case 3:
+                        Console.WriteLine("CALENDAR MAN");
+                        app.CalendarMan();
+                        break;
+                    default:
+                        Console.WriteLine("Wrong Option");
+                        break;
+
+                }
+                Console.WriteLine("Do you wanna continue: yes or no");
+                willing = Console.ReadLine();
+
+            } while (string.Equals(willing,"yes"));
+
+            Console.WriteLine("Thank You !");
+            
         }
     }
 }

@@ -19,7 +19,7 @@ namespace AssessmentMar24
         string[] chocoColor = { "green", "red", "blue", "orange", "yellow", "violet", "pink", "VIBGYOR" };
         public void addChocolates()
         {
-            Console.WriteLine("The color you want");
+            Console.Write("Color you want: ");
             int c = Convert.ToInt32(Console.ReadLine());
             if (c > choco.Length)
             {
@@ -27,16 +27,17 @@ namespace AssessmentMar24
             }
             else
             {
-                Console.WriteLine("How many");
+                Console.Write("How many: ");
                 int n = Convert.ToInt32(Console.ReadLine());
 
                 for (int i = 0; i < n; i++)
                 {
                     choco = choco.Append(c).ToArray();
                 }
+                Console.Write("Choco: ");
                 foreach (var i in choco)
                 {
-                    Console.WriteLine(chocoColor[i - 1]);
+                    Console.Write(chocoColor[i - 1] + " ");
                 }
             }
 
@@ -44,7 +45,7 @@ namespace AssessmentMar24
         public void removeChocolates()
         {
             Console.WriteLine("Remove the excess");
-            Console.WriteLine("Count");
+            Console.Write("Count: ");
 
             int count = Convert.ToInt32(Console.ReadLine());
             if (count > choco.Length)
@@ -69,20 +70,28 @@ namespace AssessmentMar24
         }
         public void dispenseChocolates()
         {
-            Console.WriteLine("Number of Choco to remove from bottom");
+            Console.Write("Number of Choco to remove from bottom: ");
             int count = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Removed Elements: ");
-            for(int i=0; i<count; i++)
+            if (count > choco.Length)
             {
-                Console.Write(choco[i] + " ");
-                choco = choco.Skip(i).ToArray();
+                Console.WriteLine("Wrong Input");
             }
-
-            //for(int i=0; i<count)
-            foreach (int i in choco)
+            else
             {
-                Console.WriteLine(chocoColor[i] + " ");
+                
+                for (int i = 0; i < count; i++)
+                {
+                    //Console.WriteLine(choco[i] + " ");
+                    choco = choco.Skip(i).ToArray();
+                }
+
+                //for(int i=0; i<count)
+                Console.Write("Remaining Elements: ");
+                foreach (int i in choco)
+                {
+                    Console.Write(chocoColor[i - 1] + " ");
+                }
             }
 
         }
@@ -93,13 +102,22 @@ namespace AssessmentMar24
             Console.WriteLine();
             Console.Write("Count: ");
             int count = Convert.ToInt32(Console.ReadLine());
-
+            int check = 0;
             for(int i=0; i<count; i++)
             {
                 if (choco[i] == fav)
                 {
-                    Console.WriteLine(choco[i]);
-                }
+                    //Console.WriteLine(chocoColor[i]);
+                    check++;
+                }                
+            }
+            if (check == 0)
+            {
+                Console.WriteLine("No Match");
+            }
+            else
+            {
+                Console.WriteLine($"{check} Matches!");
             }
 
         }
@@ -120,7 +138,7 @@ namespace AssessmentMar24
                     }
                 }
                 c++;
-                Console.Write(+(num-1) + " " + chocoColor[i]);
+                Console.Write(+(num-1) + " " + chocoColor[i] + " ");
                 
             }
             Console.WriteLine(" ]");
@@ -130,11 +148,13 @@ namespace AssessmentMar24
         {
             Array.Sort(choco);
             Array.Reverse(choco);
+            Console.Write("[ ");
             foreach (int i in choco)
             {
                 //Console.Write(i + " ");
                 Console.Write(chocoColor[i-1] + " ");
             }
+            Console.Write(" ]");
 
         }
         public void changeChocolateColor()
@@ -145,14 +165,20 @@ namespace AssessmentMar24
             Console.Write("Change to: ");
             int changeTo = Convert.ToInt32(Console.ReadLine());
 
-            for(int i = 0; i < choco.Length ; i++)
+            int[] chChoco = new int[] { };
+            for (int i = 0; i < choco.Length ; i++)
             {
                 if (change == choco[i])
                 {
-                    choco[i] = changeTo;
+                    //choco[i] = changeTo;
+                    chChoco = chChoco.Append(changeTo).ToArray();
+                }
+                else
+                {
+                    chChoco = chChoco.Append(choco[i]).ToArray();
                 }
             }
-            foreach (int i in choco)
+            foreach (int i in chChoco)
             {
                 Console.Write(chocoColor[i - 1] + " ");
             }
@@ -168,17 +194,27 @@ namespace AssessmentMar24
             Console.Write("Count: ");
             int count = Convert.ToInt32(Console.ReadLine());
 
-            for(int i=0; i < count ;i++)
+            int[] chXChoco = new int[] { };
+
+            for (int i=0; i < count ;i++)
             {
-                if (choco[i] == change)
+                if (change == choco[i])
+                {                    
+                    chXChoco = chXChoco.Append(changeTo).ToArray();
+                }
+                else
                 {
-                    choco[i] = changeTo;
+                    chXChoco = chXChoco.Append(choco[i]).ToArray();
                 }
             }
-            for(int i = 0; i < count; i++)
+            foreach (int i in chXChoco)
+            {
+                Console.Write(chocoColor[i - 1] + " ");
+            }
+            /*for(int i = 0; i < count; i++)
             {
                 Console.Write(chocoColor[i] + " ");
-            }
+            }*/
 
 
         }
@@ -259,69 +295,77 @@ namespace AssessmentMar24
             var obj = new ChocoDispenser();
             Console.WriteLine("Hello !\n The Chocolate Colors are: ");
             Console.WriteLine("1 - Green\n2 - Red\n3 - Blue\n4 - Orange\n5 - Yellow\n6 - Violet\n7 - Pink\n8 - VIGBYOR");
+            Console.WriteLine("------------------------------------");
             //int[] choco = {1, 1, 1, 2, 3, 2, 4, 5, 1, 6, 3, 6, 7};
-
-            Console.WriteLine("1. Add Choclate");
-            Console.WriteLine("2. Remove Chocolate");
-            Console.WriteLine("3. Dispense Chocolate");
-            Console.WriteLine("4. Fav Chocolate");
-            Console.WriteLine("5. Number of Chocos");
-            Console.WriteLine("6. Sorting Based on Count");
-            Console.WriteLine("7. Change the Color");
-            Console.WriteLine("8. Changing the Color & Displayinh the Count");
-            Console.WriteLine("9. Fresh Pickings");
-            Console.WriteLine("10. Rainows & Sunshine");
-
-            Console.WriteLine("\nYour Choice");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            switch (choice)
+            string willing = "";
+            do
             {
-                case 1:
-                    Console.WriteLine("MORE! MORE! MORE!");
-                    obj.addChocolates();
-                    break;
-                case 2:
-                    Console.WriteLine("LESS! LESS! LESS");
-                    obj.removeChocolates();
-                    break;
-                case 3:
-                    Console.WriteLine("One is not enough");
-                    obj.dispenseChocolates();
-                    break;
-                case 4:
-                    Console.WriteLine("My favourite color is...");
-                    obj.dispenseChocolatesOfColor();
-                    break;
-                case 5:
-                    Console.WriteLine("LED my chocos");
-                    obj.noOfChocolates();
-                    break;
-                case 6:
-                    Console.WriteLine("Let's stack em up");
-                    obj.sortChocolateBasedOnCount();
-                    break;
-                case 7:
-                    Console.WriteLine("They taste the same!");
-                    obj.changeChocolateColor();
-                    break;
-                case 8:
-                    Console.WriteLine("Convert heretics!");
-                    obj.changeChocolateAllOfxCount();
-                    break;
-                case 9:
-                    Console.WriteLine("Challenge 1: Fresh Pickings!");
-                    obj.removeChocolateOfColor();
-                    break;
-                case 10:
-                    Console.WriteLine("Challenge 2: Rainows & Sunshine!");
-                    obj.dispenseRainbowChocolates();
-                    break;
-                default:
-                    Console.WriteLine("Put of Range!");
-                    break;
+                Console.WriteLine("1. Add Choclate");
+                Console.WriteLine("2. Remove Chocolate");
+                Console.WriteLine("3. Dispense Chocolate");
+                Console.WriteLine("4. Fav Chocolate");
+                Console.WriteLine("5. Number of Chocos");
+                Console.WriteLine("6. Sorting Based on Count");
+                Console.WriteLine("7. Change the Color");
+                Console.WriteLine("8. Changing the Color & Displayinh the Count");
+                Console.WriteLine("9. Fresh Pickings");
+                Console.WriteLine("10. Rainows & Sunshine");
 
-            }
+                Console.Write("\nYour Choice: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("MORE! MORE! MORE!");
+                        obj.addChocolates();
+                        break;
+                    case 2:
+                        Console.WriteLine("LESS! LESS! LESS");
+                        obj.removeChocolates();
+                        break;
+                    case 3:
+                        Console.WriteLine("One is not enough");
+                        obj.dispenseChocolates();
+                        break;
+                    case 4:
+                        Console.WriteLine("My favourite color is...");
+                        obj.dispenseChocolatesOfColor();
+                        break;
+                    case 5:
+                        Console.WriteLine("LED my chocos");
+                        obj.noOfChocolates();
+                        break;
+                    case 6:
+                        Console.WriteLine("Let's stack em up");
+                        obj.sortChocolateBasedOnCount();
+                        break;
+                    case 7:
+                        Console.WriteLine("They taste the same!");
+                        obj.changeChocolateColor();
+                        break;
+                    case 8:
+                        Console.WriteLine("Convert heretics!");
+                        obj.changeChocolateAllOfxCount();
+                        break;
+                    case 9:
+                        Console.WriteLine("Challenge 1: Fresh Pickings!");
+                        obj.removeChocolateOfColor();
+                        break;
+                    case 10:
+                        Console.WriteLine("Challenge 2: Rainows & Sunshine!");
+                        obj.dispenseRainbowChocolates();
+                        break;
+                    default:
+                        Console.WriteLine("Out of Range!");
+                        break;
+
+                }
+                Console.WriteLine("\nDo you wanna continue?\nyes or no");
+                willing = Console.ReadLine();
+            } while (string.Equals(willing, "yes"));
+
+            Console.WriteLine("Thank You !");
         }
     }
 }
