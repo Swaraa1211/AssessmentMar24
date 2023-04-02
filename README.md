@@ -1,7 +1,8 @@
 # AssessmentMar24
 ProGrad Assessment 1 - March 24
-
+------------------------------
 Personality Trait App !
+-------------------------------
 Sara has her psychology thesis submission tomorrow. She had vowed to her friends that she would digitise her ideas so that anyone can find their personality by giving their (relevant) informations. She has the brains but she lacks to code it. Help Sara to mock her friends by building this personality trait application.
 
 Iteration 1: Be a Mentalist
@@ -16,6 +17,7 @@ How close is your birthday for a perfect surprise? Here you will have to find th
 Well, well. I should be saying the end story as well.
 
 Chocolate Dispenser !
+----------------------------
 Caitlyn loved chocolates and asked her mum to buy her a truck of chocolates. Her mum wasn't as generous, but she did buy Cait a tiny chocolate dispenser. However, she didn't teach Cait how to operate it. She would only give her one chocolate a day. Cait obviously wanted more, so much more.
 Cait is now on a quest to create a virtual terminal which can directly access the chocolate machine. She needs YOU to help her code functionalities in the back-end though.
 
